@@ -54,7 +54,10 @@ function! gogh#repo() abort
     let l:cmd += ['--direction', l:direction]
   endif
 
-  return split(system(join(l:cmd)), '[\n\r]\+')
+  let l:cmd = join(l:cmd)
+  echo 'Calling '.l:cmd.'...'
+
+  return split(system(l:cmd), '[\n\r]\+')
 endfunction
 
 function! gogh#get(repository)
@@ -79,7 +82,10 @@ function! gogh#list() abort
     let l:cmd += ['--primary']
   endif
 
-  return split(system(join(l:cmd)), '[\n\r]\+')
+  let l:cmd = join(l:cmd)
+  echo 'Calling '.l:cmd.'...'
+
+  return split(system(l:cmd), '[\n\r]\+')
 endfunction
 
 function! gogh#cd(project)
