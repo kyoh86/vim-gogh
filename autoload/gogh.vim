@@ -60,7 +60,7 @@ endfunction
 function! gogh#get(repository)
   let l:cmd = 'gogh get '.a:repository
   echo l:cmd
-  system(l:cmd)
+  echo system(l:cmd)
 endfunction
 
 " Function: gogh#list will get a list of projects
