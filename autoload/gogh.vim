@@ -32,25 +32,26 @@ function! gogh#repo() abort
   let l:direction   = get(g:, 'gogh_params_repo_direction')
 
   let l:cmd = ['gogh', 'repo']
-  if (l:own)
+
+  if l:own
     let l:cmd += ['--own']
   endif
-  if (l:collaborate)
+  if l:collaborate
     let l:cmd += ['--collaborate']
   endif
-  if (l:member)
+  if l:member
     let l:cmd += ['--member']
   endif
-  if (l:user)
+  if l:user
     let l:cmd += ['--user', l:user]
   endif
-  if (l:visibility)
+  if l:visibility
     let l:cmd += ['--visibility', l:visibility]
   endif
-  if (l:sort)
+  if l:sort
     let l:cmd += ['--sort', l:sort]
   endif
-  if (l:direction)
+  if l:direction
     let l:cmd += ['--direction', l:direction]
   endif
 
@@ -58,6 +59,32 @@ function! gogh#repo() abort
   echo 'Calling '.l:cmd.'...'
 
   return split(system(l:cmd), '[\n\r]\+')
+endfunction
+
+function! gogh#action(repository, command)
+  let l:cmd = 'gogh where '.a:repository
+  echo l:cmd
+  let l:path = system(l:cmd)
+
+  let l:action = a:command . ' ' . l:path
+  echo l:action
+  execute l:action
+endfunction
+
+function!gogh#cd(repository, cd)
+  let l:cd = 'cd'
+  if a:cd !=# ''
+    let l:cd = a:cd
+  endif
+  call gogh#action(a:repository, l:cd)
+endfunction
+
+function!gogh#edit(repository, edit)
+  let l:edit = 'edit'
+  if a:edit !=# ''
+    let l:edit = a:edit
+  endif
+  call gogh#action(a:repository, l:edit)
 endfunction
 
 function! gogh#get(repository)
@@ -86,12 +113,6 @@ function! gogh#list() abort
   echo 'Calling '.l:cmd.'...'
 
   return split(system(l:cmd), '[\n\r]\+')
-endfunction
-
-function! gogh#cd(project)
-  let l:cmd = 'cd '.substitute(system('gogh where '.a:project), '[\n\r]\+$', '', '')
-  echo l:cmd
-  exec l:cmd
 endfunction
 
 let &cpo = s:save_cpo
