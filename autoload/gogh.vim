@@ -63,11 +63,9 @@ endfunction
 
 function! gogh#action(repository, command)
   let l:cmd = 'gogh where '.a:repository
-  echo l:cmd
   let l:path = system(l:cmd)
 
   let l:action = a:command . ' ' . l:path
-  echo l:action
   execute l:action
 endfunction
 
@@ -89,7 +87,6 @@ endfunction
 
 function! gogh#get(repository)
   let l:cmd = 'gogh get '.a:repository
-  echo l:cmd
   echo system(l:cmd)
 endfunction
 
