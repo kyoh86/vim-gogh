@@ -95,7 +95,7 @@ endfunction
 "  - g:gogh_params_list_format : specify output format (relative, full or short). Default: relative
 "  - g:gogh_params_list_primary : only in primary root directory (0 or 1). Default: 0
 function! gogh#list() abort
-  let l:format = get(g:, 'gogh_params_list_format')
+  let l:format = get(g:, 'gogh_params_list_format', 'short')
   let l:primary = get(g:, 'gogh_params_list_primary')
 
   let l:cmd = ['gogh', 'list']
