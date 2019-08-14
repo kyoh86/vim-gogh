@@ -33,25 +33,25 @@ function! gogh#repo() abort
 
   let l:cmd = ['gogh', 'repo']
 
-  if l:own
+  if l:own !=# ''
     let l:cmd += ['--own']
   endif
-  if l:collaborate
+  if l:collaborate !=# ''
     let l:cmd += ['--collaborate']
   endif
-  if l:member
+  if l:member !=# ''
     let l:cmd += ['--member']
   endif
-  if l:user
+  if l:user !=# ''
     let l:cmd += ['--user', l:user]
   endif
-  if l:visibility
+  if l:visibility !=# ''
     let l:cmd += ['--visibility', l:visibility]
   endif
-  if l:sort
+  if l:sort !=# ''
     let l:cmd += ['--sort', l:sort]
   endif
-  if l:direction
+  if l:direction !=# ''
     let l:cmd += ['--direction', l:direction]
   endif
 
@@ -62,7 +62,7 @@ function! gogh#repo() abort
 endfunction
 
 function! gogh#action(repository, command)
-  let l:cmd = 'gogh where '.a:repository
+  let l:cmd = 'gogh where --exact '.a:repository
   let l:path = system(l:cmd)
 
   let l:action = a:command . ' ' . l:path
@@ -99,10 +99,10 @@ function! gogh#list() abort
   let l:primary = get(g:, 'gogh_params_list_primary')
 
   let l:cmd = ['gogh', 'list']
-  if (l:format)
+  if l:format !=# ''
     let l:cmd += ['--format', l:format]
   endif
-  if (l:primary)
+  if l:primary !=# ''
     let l:cmd += ['--primary']
   endif
 
