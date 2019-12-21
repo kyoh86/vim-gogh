@@ -1,6 +1,6 @@
 " gogh.vim - gogh (GO GitHub project manager) for vim
 " Maintainer:   kyoh86
-" License:      This file is placed in the public domain.
+" License:		MIT License(http://www.opensource.org/licenses/MIT)
 
 if exists('g:autoloaded_gogh_ui')
   finish

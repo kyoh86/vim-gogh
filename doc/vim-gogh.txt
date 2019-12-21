@@ -1,0 +1,51 @@
+*vim-gogh.txt* Manage projects with [gogh](https://github.com/kyoh86/gogh).
+
+==============================================================================
+CONTENTS                                                   *vim-gogh-contents*
+
+- Introduction                                         |vim-gogh-introduction|
+- Install                                                   |vim-gogh-install|
+- Commands                                                 |vim-gogh-commands|
+- License                                                   |vim-gogh-license|
+
+==============================================================================
+INTRODUCTION                                           *vim-gogh-introduction*
+
+Jump, open and download project with gogh in vim.
+
+==============================================================================
+INSTALL                                                     *vim-gogh-install*
+
+By vim-plug: >
+    Plug 'kyoh86/vim-gogh'
+<
+
+Now, vim-gogh requires `fzf`.
+
+And you should setup in `.vimrc` >
+    nmap <Leader>ge <Plug>(gogh-edit-project)
+    nmap <Leader>gp <Plug>(gogh-switch-project)
+    nmap <Leader>gg <Plug>(gogh-get-repository)
+    call gogh#ui#fzf#use()
+<
+
+==============================================================================
+COMMANDS                                                   *vim-gogh-commands*
+
+GoghEditProject                                             *:GoghEditProject*
+    This command will open selected project root dir.
+
+GoghSwitchProject                                         *:GoghSwitchProject*
+    This command will call `:cd` to selected project root dir.
+
+GoghGetRepository                                         *:GoghGetRepository*
+    This command will clone a selected repository.
+
+==============================================================================
+LICENSE                                                     *vim-gogh-license*
+
+MIT License.
+
+Also see http://www.opensource.org/licenses/MIT for more information.
+
+vim:textwidth=78:tabstop=4:shiftwidth=4:expandtab:filetype=help:norl:
