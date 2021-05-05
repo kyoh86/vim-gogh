@@ -10,6 +10,8 @@ let g:autoloaded_gogh_ui_fzf = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+let s:separator = '\t'
+
 " Function: gogh#ui#fzf#use 
 " Description: use FZF for gogh UI
 function! gogh#ui#fzf#use(...)
@@ -17,14 +19,14 @@ function! gogh#ui#fzf#use(...)
 
   function! l:implements.fzf_option()
     return {
-      \ 'source': 'gogh list --format "custom:{{full .}}://:{{short .}}"',
-      \ 'options': ['--delimiter', '://:', '--with-nth', '2'],
+      \ 'source': 'gogh list --format fields',
+      \ 'options': ['--delimiter', s:separator, '--with-nth', '4'],
       \ 'split_path': self.split_path
       \ }
   endfunction
 
   function! l:implements.split_path(line) abort
-    let [l:target; _] = split(a:line, '://:')
+    let [l:target; _] = split(a:line, s:separator)
     return fnameescape(l:target)
   endfunction
 
