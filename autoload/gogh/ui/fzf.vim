@@ -75,9 +75,8 @@ function! gogh#ui#fzf#use(...)
   endfunction
 
   function! l:implements.get_repository()
-    " UNDONE: use options on 'gogh repo'
     let l:opts = {
-      \ 'source': 'gogh repo', 
+      \ 'source': 'gogh repos --format spec --limit 0', 
       \ }
     function! l:opts.sink(line) abort
       echo system('gogh get ' . a:line)
